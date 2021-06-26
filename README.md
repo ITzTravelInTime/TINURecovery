@@ -23,9 +23,9 @@ This code is intended for macOS only, it might also work on iOS for detecting th
 
 # About the project:
 
-This code was created as part of my TINU project (https://github.com/ITzTravelInTime/TINU) and has been separated and made it's own library to make the main project's source less complex and more focused on it's aim. 
+This code was created as part of my TINU project (https://github.com/ITzTravelInTime/TINU) and has been separated and made into it's own library to make the main project's source less complex and more focused on it's aim. 
 
-Also having it as it's own library allows for code to be updated separately and so various versions of my app will be abkle to be compiled all with the latest version of this library.
+Also having it as it's own library allows for code to be updated separately and so various versions of the main TINU app will be able to be compiled all with the latest version of this library.
 
 # Credits:
 
