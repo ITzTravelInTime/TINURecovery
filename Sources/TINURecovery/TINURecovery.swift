@@ -9,13 +9,13 @@ import Foundation
 public class TINURecovery{
     
     /**Used to simulate the detection of a macOS Recover/Installer OS for debugging purposes*/
-    class var simulateRecovery: Bool{
+    public class var simulateRecovery: Bool{
         //This implementation allows for overridability by subsclasses
         return false
     }
     
     /**Detects if the app is actually running on a macOS Recovery/Installer OS or not*/
-    static var isActuallyOn: Bool{
+    public static var isActuallyOn: Bool{
         //Uses a static value to avoid repeting the detection code for each call of the variable
         struct MEM{
             static var tempReallyRecovery: Bool! = nil
@@ -35,7 +35,7 @@ public class TINURecovery{
     }
     
     /**Detects if the app is running on a macOS Recovery/Installer OS or in a simulated recovery os (Simulating the recovery OS allows for debugging of thinks like dedicated UI using your normal development tools like Xcode)*/
-    static var isOn: Bool{
+    public static var isOn: Bool{
         //Uses a static value to avoid repeting the detection code for each call of the variable
         struct MEM{
             static var state: Bool! = nil
@@ -65,7 +65,7 @@ public class TINURecovery{
 /**This class manages app sandbox detection code*/
 public final class Sandbox{
     /**Detects is the current program is running as sandboxed or not*/
-    static var isEnabled: Bool {
+    public static var isEnabled: Bool {
         //Uses a static value to avoid repeting the detection code for each call of the variable
         struct MEM{
             static var state: Bool! = nil
@@ -83,12 +83,12 @@ public final class Sandbox{
 /**This class is a more elegant way of detecting the current user name and is it's root*/
 public final class User{
     /**Detects the logon name of the current user.*/
-    static public var name: String{
+    public static var name: String{
         return NSUserName()
     }
     
     /**Detects if the current user is Root*/
-    static public var isRoot: Bool{
+    public static var isRoot: Bool{
         return name == "root"
     }
 }
