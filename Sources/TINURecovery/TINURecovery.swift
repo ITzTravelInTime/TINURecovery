@@ -24,7 +24,8 @@ public class TINURecovery{
         if MEM.tempReallyRecovery == nil{
             var really = false
             
-            if User.isRoot && !Sandbox.isEnabled{
+            if Sandbox.canDoRootOperations{
+                //Recovery/Installer OSes don't have the sudo executable and the use is just Root
                 really = !FileManager.default.fileExists(atPath: "/usr/bin/sudo")
             }
             
@@ -77,6 +78,10 @@ public final class Sandbox{
         }
         
         return MEM.state
+    }
+    
+    public static var canDoRootOperations: Bool{
+        return !isEnabled && User.isRoot
     }
 }
 
