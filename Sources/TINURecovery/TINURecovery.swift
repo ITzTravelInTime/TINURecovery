@@ -19,7 +19,7 @@ import Foundation
  You must override this class in order to change the `simulateRecovery` value for debugging purposes, so for actual usage is reccommended (but not necessary) using a subclass of this one.
  
  */
-public class TINURecovery{
+open class TINURecovery{
     
     /**
      Used to simulate the detection of a macOS Recover/Installer OS for debugging purposes.
@@ -27,7 +27,7 @@ public class TINURecovery{
      Simulating the recovery OS allows for debugging of things like dedicated UI using your normal development tools like Xcode.
      You must override this value inside a subclass of `TINURecovery` in order to change it's value, therefor it's reccomended that this class is used with a subclass instead.
      */
-    public class var simulateRecovery: Bool{
+    open class var simulateRecovery: Bool{
         //This implementation allows for overridability by subsclasses
         return false
     }
