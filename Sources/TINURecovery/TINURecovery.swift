@@ -2,40 +2,67 @@
 
 import Foundation
 
+/**
+ Little function to make our prints prettyer
+
+    - Parameter val: the boolean value to convert for our pretty print.
+ 
+    - Returns: if val is true a string saying `"Yes"` is returned, otherwise a string saying `"No"` is returned
+ */
+@inline(__always) fileprivate func boolToPrettyStr( _ val: Bool) -> String{
+    return val ? "Yes" : "No"
+}
+
 #if os(macOS)
 /**This class manages the macOS Recovery/Installer OS detection functions.
  
- You must override this class in order to change the simulateRecovery value for debugging purpose, so for actual usage is reccommended using a subclass of this one*/
+ You must override this class in order to change the `simulateRecovery` value for debugging purposes, so for actual usage is reccommended (but not necessary) using a subclass of this one.
+ 
+ */
 public class TINURecovery{
     
-    /**Used to simulate the detection of a macOS Recover/Installer OS for debugging purposes*/
+    /**
+     Used to simulate the detection of a macOS Recover/Installer OS for debugging purposes.
+     
+     Simulating the recovery OS allows for debugging of things like dedicated UI using your normal development tools like Xcode.
+     You must override this value inside a subclass of `TINURecovery` in order to change it's value, therefor it's reccomended that this class is used with a subclass instead.
+     */
     public class var simulateRecovery: Bool{
         //This implementation allows for overridability by subsclasses
         return false
     }
     
-    /**Detects if the app is actually running on a macOS Recovery/Installer OS or not*/
+    /**
+     Detects if the app is actually running on a macOS Recovery/Installer OS.
+     
+     Use this to only if this information is needed to perform tasks that only works inside the macOS Recovery/Installer OS evironment.
+     */
     public static var isActuallyOn: Bool{
         //Uses a static value to avoid repeting the detection code for each call of the variable
         struct MEM{
-            static var tempReallyRecovery: Bool! = nil
+            static var state: Bool! = nil
         }
         
-        if MEM.tempReallyRecovery == nil{
-            var really = false
+        if MEM.state == nil{
+            MEM.state = false
             
-            if Sandbox.canDoRootOperations{
+            if Sandbox.hasUnrestrictedAccess{
                 //Recovery/Installer OSes don't have the sudo executable and the use is just Root
-                really = !FileManager.default.fileExists(atPath: "/usr/bin/sudo")
+                MEM.state = !FileManager.default.fileExists(atPath: "/usr/bin/sudo")
             }
             
-            MEM.tempReallyRecovery = really
+            print("Are we actually into a macOS Recovery/Installer OS? \(boolToPrettyStr(MEM.state!))")
         }
         
-        return MEM.tempReallyRecovery
+        return MEM.state
     }
     
-    /**Detects if the app is running on a macOS Recovery/Installer OS or in a simulated recovery os (Simulating the recovery OS allows for debugging of thinks like dedicated UI using your normal development tools like Xcode)*/
+    /**
+     Detects if the app is running on a macOS Recovery/Installer OS or in a simulated recovery os.
+     
+     It's reccommended to use this to determinate if the recovery mode is active, especially if this information is used with the purpose of setting up some user interface.
+     
+     */
     public static var isOn: Bool{
         //Uses a static value to avoid repeting the detection code for each call of the variable
         struct MEM{
@@ -43,18 +70,14 @@ public class TINURecovery{
         }
         
         if MEM.state == nil{
-            if isActuallyOn{
-                print("Running on the root user on a mac os recovery")
-                MEM.state = true
-            }else{
-                print("Running on this user: " + User.name)
-                
-                if simulateRecovery{
-                    print("Recovery mode simulation activated")
-                }
-                
-                MEM.state = simulateRecovery
+            
+            MEM.state = simulateRecovery || isActuallyOn
+            
+            if simulateRecovery{
+                print("macOS Recovery/Installer OS simulation activated")
             }
+            
+            print("Are we either into a real or simulated macOS Recovery/Installer OS? \(boolToPrettyStr(MEM.state!))")
         }
         
         return MEM.state
@@ -63,9 +86,9 @@ public class TINURecovery{
 
 #endif
 
-/**This class manages app sandbox detection code*/
+///This class manages program sandbox detection code
 public final class Sandbox{
-    /**Detects is the current program is running as sandboxed or not*/
+    ///Detects is the current program is running as sandboxed
     public static var isEnabled: Bool {
         //Uses a static value to avoid repeting the detection code for each call of the variable
         struct MEM{
@@ -73,27 +96,58 @@ public final class Sandbox{
         }
         
         if MEM.state == nil{
-            let environment = ProcessInfo.processInfo.environment
-            MEM.state = environment["APP_SANDBOX_CONTAINER_ID"] != nil
+            MEM.state = ProcessInfo.processInfo.environment["APP_SANDBOX_CONTAINER_ID"] != nil
+            print("Is Sandbox enabled? \(boolToPrettyStr(MEM.state!))")
         }
         
         return MEM.state
     }
     
-    public static var canDoRootOperations: Bool{
-        return !isEnabled && User.isRoot
+    /**
+     Determinates if the current program has unrestricted access
+     
+     Programs with unrestricted access runs as root and are not sandboxed.
+     
+     */
+    public static var hasUnrestrictedAccess: Bool{
+        if !isEnabled && CurrentUser.isRoot{
+            print("Keep in mind that this app has unrestricted access now!")
+            return true
+        }
+        print("Sadly our access is somewhat restricted")
+        return false
     }
 }
 
-/**This class is a more elegant way of detecting the current user name and is it's root*/
-public final class User{
-    /**Detects the logon name of the current user.*/
+///This class is a more elegant way of detecting the current user name and is it's root
+public final class CurrentUser{
+    ///Detects the logon name of the current user.
     public static var name: String{
-        return NSUserName()
+        //Uses a static value to avoid repeting the detection code for each call of the variable
+        struct MEM{
+            static var state: String! = nil
+        }
+        
+        if MEM.state == nil{
+            MEM.state = NSUserName()
+            print("Running on this user: " + MEM.state!)
+        }
+        
+        return MEM.state
     }
     
-    /**Detects if the current user is Root*/
+    ///Detects if the current user is Root
     public static var isRoot: Bool{
-        return name == "root"
+        //Uses a static value to avoid repeting the detection code for each call of the variable
+        struct MEM{
+            static var state: Bool! = nil
+        }
+        
+        if MEM.state == nil{
+            MEM.state = name == "root"
+            print("Is Root user?: \(boolToPrettyStr(MEM.state!))")
+        }
+        
+        return MEM.state
     }
 }
