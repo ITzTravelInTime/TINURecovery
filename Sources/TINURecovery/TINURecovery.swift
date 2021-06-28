@@ -14,12 +14,19 @@ import Foundation
 }
 
 #if os(macOS)
+
+///This protocol is used to provvide a standard interface of objects that needs to have simulated states using their subclasses
+protocol Simulatable {
+    associatedtype T
+    static var simulatedStatus: T? { get }
+}
+
 /**This class manages the macOS Recovery/Installer OS detection functions.
  
  You must override this class in order to change the `simulateRecovery` value for debugging purposes, so for actual usage is reccommended (but not necessary) using a subclass of this one.
  
  */
-open class TINURecovery{
+open class TINURecovery: Simulatable{
     
     /**
      Used to simulate the detection of a macOS Recover/Installer OS for debugging purposes.
@@ -27,7 +34,7 @@ open class TINURecovery{
      Simulating the recovery OS allows for debugging of things like dedicated UI using your normal development tools like Xcode.
      You must override this value inside a subclass of `TINURecovery` in order to change it's value, therefor it's reccomended that this class is used with a subclass instead.
      */
-    open class var simulateRecovery: Bool{
+    open class var simulatedStatus: Bool?{
         //This implementation allows for overridability by subsclasses
         return false
     }
@@ -71,9 +78,9 @@ open class TINURecovery{
         
         if MEM.state == nil{
             
-            MEM.state = simulateRecovery || isActuallyOn
+            MEM.state = simulatedStatus ?? false || isActuallyOn
             
-            if simulateRecovery{
+            if simulatedStatus ?? false{
                 print("macOS Recovery/Installer OS simulation activated")
             }
             
