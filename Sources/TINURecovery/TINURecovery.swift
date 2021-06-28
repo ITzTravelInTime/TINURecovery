@@ -14,7 +14,7 @@ import Foundation
 }
 
 ///This protocol is used to provvide a standard interface of objects that needs to have simulated states using their subclasses
-protocol Simulatable {
+public protocol Simulatable {
     associatedtype T
     static var simulatedStatus: T? { get }
 }
