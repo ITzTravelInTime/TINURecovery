@@ -1,19 +1,90 @@
 # TINURecovery
+
 Library with the Recovery Mode, Sandbox and User detection functions used by TINU (https://github.com/ITzTravelInTime/TINU)
 
-# Features description:
+# Features and usage:
+
+Simulatable:
+
+- A protocol for objects that needs to have simulated debug states. 
+    
+    Example code:
+
+```swift
+
+import TINURecovery
+
+open class Foo: Simulatable{
+    
+    //Provvided by the protocol, you should override this
+    public static var simulatedStatus: Bool? = nil
+    
+    public class func bar() -> Bool{
+        if let status = simulatedStatus{
+            return status
+        }
+        
+        return false
+    }
+}
+
+print("Testing status: ")
+
+print("Foo status: \(Foo.bar())") //returns false
+
+Foo.simulatedStatus = true
+
+print("Bar status: \(Foo.bar())") //returns true
+
+```
 
 TINURecovery:
 
 - [Available only on macOS] Offers values to detect if the current program is running inside a macOS Installer/Recovery OS and allows for debugabbility inside a normal macOS by creating a subclass and overriding the 'simulateRecovery' value.
 
+    Basic example usage:
+
+```swift
+
+import TINURecovery
+
+//You can simulate recovery mode to test UI
+TINURecovery.simulatedStatus = true
+
+print("Is this program running on a macOS Recovery/Installer? \((TINURecovery.isOn ? "Yes" : "No"))")
+
+print("Is this program actually running on a macOS Recovery/Installer? \((TINURecovery.isActuallyOn ? "Yes" : "No"))")
+
+```
+
 Sandbox: 
 
-- Used to detect if the current app is running with the app Sandbox enabled or not
+- Used to detect if the current app is running with the app Sandbox enabled or not.
+
+    Example usage:
+
+```swift
+
+import TINURecovery
+
+print("Is this app sandboxed? \(Sandbox.isEnabled ? "Yes" : "No")")
+
+```
 
 User:
 
-- Just a more convenenint way fo getting the current user logon name and if it's the Root user.
+- Just a more convenenint way of getting the current user's logon name and if it's the Root user.
+
+    Example usage:
+
+```swift
+
+import TINURecovery
+
+print("Is this user Root? \(CurrentUser.isRoot ? "Yes" : "No")")
+print("What's the user name? \(CurrentUser.name)")
+
+```
 
 # Who should use this Library?
 
