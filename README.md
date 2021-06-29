@@ -4,43 +4,43 @@ Library with the Recovery Mode, Sandbox and User detection functions used by TIN
 
 # Features and usage:
 
-Simulatable:
+SimulatableDetectable:
 
 - A protocol for objects that needs to have simulated debug states. 
     
-    Example code:
+    Example usage:
 
 ```swift
 
 import TINURecovery
 
-open class Foo: Simulatable{
+class Foo: SimulatableDetectable{
+
+    ///if this property is nil the `actualStatus` property will be returned by the `status` propert, otherwise that will return the value of this property
+    static var simulatedStatus: Bool? = nil
     
-    //Provvided by the protocol, you should override this
-    public static var simulatedStatus: Bool? = nil
-    
-    public class func bar() -> Bool{
-        if let status = simulatedStatus{
-            return status
-        }
-        
+    ///Returns the actual status
+    static var actualStatus: Bool{
         return false
     }
+    
 }
 
 print("Testing status: ")
 
-print("Foo status: \(Foo.bar())") //returns false
+print("Foo status: \(Foo.status)") //returns false
+print("Foo actual status: \(Foo.actualStatus)") //returns false
 
 Foo.simulatedStatus = true
 
-print("Bar status: \(Foo.bar())") //returns true
+print("Foo status: \(Foo.status)") //returns true
+print("Foo actual status: \(Foo.actualStatus)") //returns false
 
 ```
 
-TINURecovery:
+Recovery:
 
-- [Available only on macOS] Offers values to detect if the current program is running inside a macOS Installer/Recovery OS and allows for debugabbility inside a normal macOS by creating a subclass and overriding the 'simulateRecovery' value.
+- [Available only on macOS] detects if the current program is running inside a macOS Installer/Recovery OS and allows for debugabbility inside a normal macOS by creating a subclass and overriding the 'simulatedStatus' value.
 
     Basic example usage:
 
@@ -48,12 +48,21 @@ TINURecovery:
 
 import TINURecovery
 
-//You can simulate recovery mode to test UI
-TINURecovery.simulatedStatus = true
+print("Is this program running on a macOS Recovery/Installer OS? \((Recovery.status ? "Yes" : "No"))")
 
-print("Is this program running on a macOS Recovery/Installer? \((TINURecovery.isOn ? "Yes" : "No"))")
+```
 
-print("Is this program actually running on a macOS Recovery/Installer? \((TINURecovery.isActuallyOn ? "Yes" : "No"))")
+SIP:
+
+- [Available only on macOS] detects the status of SIP (System. Integrity. Protection) and allows for debugabbility reguardless the actual status of it on the computer by creating a subclass and overriding the 'simulatedStatus' value.
+
+    Basic example usage:
+
+```swift
+
+import TINURecovery
+
+print("Is SIP activated? \((SIP.status ? "Yes" : "No"))")
 
 ```
 
@@ -88,9 +97,9 @@ print("What's the user name? \(CurrentUser.name)")
 
 # Who should use this Library?
 
-This library should be used by swift apps/programs that are intended to run inside the macOS Recovery/Installer OS and normal macOS, therefor apps that needs to detect which envirnoment they are running on, and that's the aim of this project.
+This library should be used by swift apps/programs that requires to obtain particular info about the system like the SIP status, or particular info about the app/program itself like the if sandboxing is enabled.
 
-This code is intended for macOS only, it might also work on iOS for detecting the root user and Sandbox presence but it's un tested.
+This code is intended for macOS only, it might also work on other Apple's OSes for the non-macOS-exclusive features but it's untested.
 
 # About the project:
 
