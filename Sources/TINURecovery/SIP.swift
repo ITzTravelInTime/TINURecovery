@@ -18,6 +18,11 @@ import SwiftCPUDetect
  */
 open class SIP: SimulatableDetectable{
     
+    ///Initializer for compliance with the protocol
+    public required init(){
+        //Litterally does nothing since this class is used more like a namespe and so it doesn't contain any stored values to intialize
+    }
+    
     /**
      Returns the actual current status of SIP reguardless of the value of `simulatedStatus`
         

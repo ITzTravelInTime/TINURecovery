@@ -13,6 +13,7 @@ public protocol SimulatableDetectable {
     static var simulatedStatus: T? { get }
     static var actualStatus: T { get }
     static var status: T { get }
+    init()
 }
 
 extension SimulatableDetectable{

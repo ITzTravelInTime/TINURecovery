@@ -15,6 +15,11 @@ import Foundation
  */
 open class Recovery: SimulatableDetectable{
     
+    ///Initializer for compliance with the protocol
+    public required init(){
+        //Litterally does nothing since this class is used more like a namespe and so it doesn't contain any stored values to intialize
+    }
+    
     /**
      Detects if the app is actually running on a macOS Recovery/Installer OS.
      
