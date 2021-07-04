@@ -19,7 +19,7 @@ public final class CurrentUser{
         
         if MEM.state == nil{
             MEM.state = NSUserName()
-            print("Current user is: " + MEM.state!)
+            Log.print("Current user is: " + MEM.state!)
         }
         
         return MEM.state
@@ -34,7 +34,7 @@ public final class CurrentUser{
         
         if MEM.state == nil{
             MEM.state = name == "root"
-            print("Is the current user Root?: \(boolToPrettyStr(MEM.state!))")
+            Log.print("Is the current user Root?: \(boolToPrettyStr(MEM.state!))")
         }
         
         return MEM.state

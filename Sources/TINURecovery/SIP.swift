@@ -56,10 +56,11 @@ open class SIP: SimulatableDetectable{
                     MEM.status = (Command.getOut(cmd: "csrutil status")?.contains("enabled") ?? true)
                 }
             }else{
+                //SIP was introduced with 10.11
                 MEM.status = false
             }
             
-            print("Is SIP Enabled? \(boolToPrettyStr(MEM.status!))")
+            Log.print("Is SIP Enabled? \(boolToPrettyStr(MEM.status!))")
         }
         
         

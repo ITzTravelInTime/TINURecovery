@@ -1,8 +1,8 @@
 # TINURecovery
 
-Library with the Recovery Mode, Sandbox and User detection functions used by TINU (https://github.com/ITzTravelInTime/TINU)
+Library with the Recovery Mode, SIP, Sandbox and User detection functions used by [TINU](https://github.com/ITzTravelInTime/TINU)
 
-# Features and usage:
+# Features and usage
 
 SimulatableDetectable:
 
@@ -101,15 +101,35 @@ This library should be used by swift apps/programs that requires to obtain parti
 
 This code is intended for macOS only, it might also work on other Apple's OSes for the non-macOS-exclusive features but it's untested.
 
-# About the project:
+# About the project
 
 This code was created as part of my TINU project (https://github.com/ITzTravelInTime/TINU) and has been separated and made into it's own library to make the main project's source less complex and more focused on it's aim. 
 
 Also having it as it's own library allows for code to be updated separately and so various versions of the main TINU app will be able to be compiled all with the latest version of this library.
 
-# Credits:
+# Libraries used
 
-ITzTravelInTime (Pietro Caruso) - Project creator
+ - [SwiftCPUDetect]("https://github.com/ITzTravelInTime/SwiftCPUDetect")
+ - [Command]("https://github.com/ITzTravelInTime/Command")
+ - [SwiftLoggedPrint]( "https://github.com/ITzTravelInTime/SwiftLoggedPrint")
+
+# Credits
+
+ - ITzTravelInTime (Pietro Caruso) - Project creator and main developer
+
+# Contacts
+
+ - ITzTravelInTime (Pietro Caruso): piecaruso97@gmail.com
+
+# Copyright
+
+Copyright (C) 2021 Pietro Caruso
+
+This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 
 

@@ -18,7 +18,7 @@ public final class Sandbox{
         
         if MEM.state == nil{
             MEM.state = ProcessInfo.processInfo.environment["APP_SANDBOX_CONTAINER_ID"] != nil
-            print("Is Sandbox enabled? \(boolToPrettyStr(MEM.state!))")
+            Log.print("Is Sandbox enabled? \(boolToPrettyStr(MEM.state!))")
         }
         
         return MEM.state
@@ -32,10 +32,10 @@ public final class Sandbox{
      */
     public static var hasUnrestrictedAccess: Bool{
         if !isEnabled && CurrentUser.isRoot{
-            print("Keep in mind that this app has unrestricted access now!")
+            Log.print("Keep in mind that this app has unrestricted access now!")
             return true
         }
-        print("Sadly our access is somewhat restricted")
+        Log.print("Sadly our access is somewhat restricted")
         return false
     }
 }

@@ -18,6 +18,15 @@
           "revision": "2fec9cb8a5fbba123623bf2ba8c6a782ed440119",
           "version": "1.0.1"
         }
+      },
+      {
+        "package": "SwiftLoggedPrint",
+        "repositoryURL": "https://github.com/ITzTravelInTime/SwiftLoggedPrint",
+        "state": {
+          "branch": null,
+          "revision": "f9b2301ef381099904adee3c276ab79e10f86810",
+          "version": "1.0.0"
+        }
       }
     ]
   },

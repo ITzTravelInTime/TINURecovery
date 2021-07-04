@@ -1,6 +1,6 @@
 //
 //  Protocols.swift
-//  
+//
 //
 //  Created by Pietro Caruso on 29/06/21.
 //
@@ -10,9 +10,9 @@
 ///This protocol is used to provvide a standard interface of objects that needs to have simulated states using their subclasses
 public protocol SimulatableDetectable {
     associatedtype T
-    static var simulatedStatus: T? { get }
+    //static var simulatedStatus: T? { get }
     static var actualStatus: T { get }
-    static var status: T { get }
+    //static var status: T { get }
     init()
 }
 
