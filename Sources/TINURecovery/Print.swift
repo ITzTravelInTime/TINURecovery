@@ -9,18 +9,11 @@ import Foundation
 import SwiftLoggedPrint
 
 internal class Log: LoggedPrinter{
-    static var prefix: String{
+    override class var prefix: String{
         return "[TINURecovery]"
     }
     
-    static var debugPrefix: String{
+    override class var debugPrefix: String{
         return "[Debug]"
-    }
-    
-    class func print( _ str: String){
-        
-        //allowsLogging = false
-        
-        super.print(str)
     }
 }

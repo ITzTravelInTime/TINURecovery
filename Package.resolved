@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/ITzTravelInTime/SwiftCPUDetect",
         "state": {
           "branch": null,
-          "revision": "2fec9cb8a5fbba123623bf2ba8c6a782ed440119",
-          "version": "1.0.1"
+          "revision": "60fe602eb74fee2692b1eb4633890e5957fffcd0",
+          "version": "1.1.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/ITzTravelInTime/SwiftLoggedPrint",
         "state": {
           "branch": null,
-          "revision": "2bcb5b83d76999a7f42873576d894046771c7afa",
-          "version": "2.0.1"
+          "revision": "beb76080080bcc0a8e698cf9fe9041f903b0324a",
+          "version": "2.0.3"
         }
       }
     ]
