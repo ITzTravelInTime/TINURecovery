@@ -16,4 +16,8 @@ internal class Log: LoggedPrinter{
     override class var debugPrefix: String{
         return "[Debug]"
     }
+    
+    override class var printerID: String{
+        return "TINURecoveryPrinter"
+    }
 }
