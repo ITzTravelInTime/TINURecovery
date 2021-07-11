@@ -15,6 +15,15 @@ import Foundation
  */
 open class Recovery: SimulatableDetectable{
     
+    /**
+     Used to simulate the status for debugging purposes.
+     
+     You can change the `simulatedStatus` value for debugging purposes, but to have more control on it and for actual usage is reccommended (but not necessary) using a subclass of this one, and ovverriding the `simulatedStatus` variable to use it with your own debug variables system.
+     */
+    open class var simulatedStatus: Bool?{
+        return nil
+    }
+    
     ///Initializer for compliance with the protocol
     public required init(){
         //Litterally does nothing since this class is used more like a namespe and so it doesn't contain any stored values to intialize

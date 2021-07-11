@@ -17,6 +17,15 @@ import SwiftCPUDetect
  
  */
 open class SIP: SimulatableDetectable{
+    /**
+     Used to simulate the status for debugging purposes.
+     
+     You can change the `simulatedStatus` value for debugging purposes, but to have more control on it and for actual usage is reccommended (but not necessary) using a subclass of this one, and ovverriding the `simulatedStatus` variable to use it with your own debug variables system.
+     */
+    open class var simulatedStatus: Bool?{
+        return nil
+    }
+    
     
     ///Initializer for compliance with the protocol
     public required init(){
@@ -38,12 +47,6 @@ open class SIP: SimulatableDetectable{
             if #available(OSX 10.11, *){
                 DispatchQueue.global(qos: .background).sync {
                     
-                    //into a Recovery/Installer os the programs runs as root, so it's pretty safe to assume that we have full access
-                    if Recovery.actualStatus{
-                        MEM.status = false
-                        return
-                    }
-                    
                     //SIP is assumed to be enabled on apple silicon
                     if let arch = CpuArchitecture.actualCurrent(){
                         if arch != .intel64{
@@ -52,8 +55,8 @@ open class SIP: SimulatableDetectable{
                         }
                     }
                     
-                    //As a backup this is assumed to be true
-                    MEM.status = (Command.getOut(cmd: "csrutil status")?.contains("enabled") ?? true)
+                    //As a backup this is assumed to be true even if it's nil, this makes sure that the highsest level of security possible is used
+                    MEM.status = (Command.run(cmd: "/usr/bin/csrutil", args: ["status"])?.outputString().contains("enabled") ?? true)
                 }
             }else{
                 //SIP was introduced with 10.11
