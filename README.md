@@ -40,7 +40,7 @@ print("Foo actual status: \(Foo.actualStatus)") //returns false
 
 Recovery:
 
-- [Available only on macOS] detects if the current program is running inside a macOS Installer/Recovery OS and allows for debugabbility inside a normal macOS by creating a subclass and overriding the 'simulatedStatus' value.
+- [Available only on macOS, Requires Sandboxing to be turned off to work] detects if the current program is running inside a macOS Installer/Recovery OS and allows for debugabbility inside a normal macOS by creating a subclass and overriding the 'simulatedStatus' value.
 
     Basic example usage:
 
@@ -54,7 +54,7 @@ print("Is this program running on a macOS Recovery/Installer OS? \((Recovery.sta
 
 SIP:
 
-- [Available only on macOS] detects the status of SIP (System. Integrity. Protection) and allows for debugabbility reguardless the actual status of it on the computer by creating a subclass and overriding the 'simulatedStatus' value.
+- [Available only on macOS, Requires Sandboxing to be turned off to work] detects the status of macOS's SIP (System Integrity Protection) and allows for debugabbility reguardless of the actual status of it on the computer by creating a subclass and overriding the 'simulatedStatus' propery.
 
     Basic example usage:
 
@@ -62,7 +62,8 @@ SIP:
 
 import TINURecovery
 
-print("Is SIP activated? \((SIP.status.resultsEnabled ? "Yes" : "No"))")
+//This print assumes an unkown SIP state as enabled
+print("Is SIP activated? \(((SIP.status.resultsEnabled ?? true) ? "Yes" : "No"))")
 print("Does SIP use a custom configuration? \(SIP.status.usesCustomConfiguration ? "Yes" : "No")")
 
 ```
@@ -98,9 +99,9 @@ print("What's the user name? \(CurrentUser.name)")
 
 # Who should use this Library?
 
-This library should be used by swift apps/programs that requires to obtain particular info about the system like the SIP status, or particular info about the app/program itself like the if sandboxing is enabled.
+This library should be used by swift apps/programs that requires to obtain particular info about the system, things like the SIP status, or particular info about the app/program itself like the if sandboxing is enabled.
 
-This code is intended for macOS only, it might also work on other Apple's OSes for the non-macOS-exclusive features but it's untested.
+This code is intended for macOS only, it might also work on other Apple's OSes for the non-macOS-specific features but it's untested.
 
 # About the project
 
@@ -110,9 +111,9 @@ Also having it as it's own library allows for code to be updated separately and 
 
 # Libraries used
 
- - [SwiftCPUDetect]("https://github.com/ITzTravelInTime/SwiftCPUDetect")
- - [Command]("https://github.com/ITzTravelInTime/Command")
- - [SwiftLoggedPrint]( "https://github.com/ITzTravelInTime/SwiftLoggedPrint")
+ - [ITzTravelInTime/SwiftCPUDetect]("https://github.com/ITzTravelInTime/SwiftCPUDetect")
+ - [ITzTravelInTime/Command]("https://github.com/ITzTravelInTime/Command")
+ - [ITzTravelInTime/SwiftLoggedPrint]( "https://github.com/ITzTravelInTime/SwiftLoggedPrint")
 
 # Credits
 

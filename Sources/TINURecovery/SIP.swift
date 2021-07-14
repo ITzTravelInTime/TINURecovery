@@ -21,13 +21,13 @@ open class SIP: SimulatableDetectable{
     ///This struct is used to represent the current SIP status
     public struct SIPStatus: Codable, Equatable{
         
-        public init(resultsEnabled: Bool, usesCustomConfiguration: Bool) {
+        public init(resultsEnabled: Bool?, usesCustomConfiguration: Bool) {
             self.resultsEnabled = resultsEnabled
             self.usesCustomConfiguration = usesCustomConfiguration
         }
         
-        ///The status of SIP
-        public let resultsEnabled: Bool
+        ///The status of SIP, nil signifies it's an unkown status
+        public let resultsEnabled: Bool?
         ///If SIP is using a custom configuration
         public let usesCustomConfiguration: Bool
     }
@@ -73,10 +73,20 @@ open class SIP: SimulatableDetectable{
                     */
                     
                     
-                    let result = (Command.run(cmd: "/usr/bin/csrutil", args: ["status"]))
+                    if let result = (Command.run(cmd: "/usr/bin/csrutil", args: ["status"])){
                     
-                    //As a backup SIP is assumed to be Enabled even if it's status can't be read, this makes sure that the highsest level of security possible is used in case of detection issues
-                    MEM.status = SIPStatus(resultsEnabled: result?.output.first?.contains("enabled") ?? true, usesCustomConfiguration: result?.outputString().contains("Configuration") ?? false)
+                        let enabled = result.output.first!.contains("enabled")
+                        //let disabled = result.output.first!.contains("disabled")
+                        let unkown = result.output.first!.contains("unknown")
+                        let custom = result.output.first!.contains("Custom Configuration") ? true : result.outputString().contains("Configuration")
+                        
+                        //As a backup SIP is assumed to be Enabled even if it's status can't be read, this makes sure that the highsest level of security possible is used in case of detection issues
+                        MEM.status = SIPStatus(resultsEnabled: enabled ? true : (unkown ? nil : false), usesCustomConfiguration: custom )
+                        
+                    }else{
+                        Log.print("Can't get SIP staus, defaulting to an unkown status")
+                        MEM.status = SIPStatus(resultsEnabled: nil, usesCustomConfiguration: false)
+                    }
                     
                 }
             }else{
@@ -85,8 +95,12 @@ open class SIP: SimulatableDetectable{
                 MEM.status = SIPStatus(resultsEnabled: false, usesCustomConfiguration: false)
             }
             
-            Log.print("Is SIP Enabled? \(boolToPrettyStr(MEM.status!.resultsEnabled))")
-            Log.print("Does SIP use a custom configuration? \(boolToPrettyStr(MEM.status!.usesCustomConfiguration))")
+            if let stat = MEM.status?.resultsEnabled {
+                Log.print("Is SIP Enabled? \(boolToPrettyStr(stat)).")
+            }else{
+                Log.print("Is SIP Enabled? We don't know.")
+            }
+            Log.print("Does SIP use a custom configuration? \(boolToPrettyStr(MEM.status!.usesCustomConfiguration)).")
         }
         
         
