@@ -43,8 +43,9 @@ open class Recovery: SimulatableDetectable{
         if MEM.state == nil{
             MEM.state = false
             
+            //This check is worth making only if the app has access to the system files
             if Sandbox.hasUnrestrictedAccess{
-                //Recovery/Installer OSes don't have the sudo executable and the use is just Root
+                //Recovery/Installer OSes don't have the sudo executable and the user is always Root
                 MEM.state = !FileManager.default.fileExists(atPath: "/usr/bin/sudo")
             }
             

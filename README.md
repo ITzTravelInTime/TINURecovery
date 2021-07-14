@@ -62,7 +62,8 @@ SIP:
 
 import TINURecovery
 
-print("Is SIP activated? \((SIP.status ? "Yes" : "No"))")
+print("Is SIP activated? \((SIP.status.resultsEnabled ? "Yes" : "No"))")
+print("Does SIP use a custom configuration? \(SIP.status.usesCustomConfiguration ? "Yes" : "No")")
 
 ```
 
