@@ -20,6 +20,12 @@ open class SIP: SimulatableDetectable{
     
     ///This struct is used to represent the current SIP status
     public struct SIPStatus: Codable, Equatable{
+        
+        public init(resultsEnabled: Bool, usesCustomConfiguration: Bool) {
+            self.resultsEnabled = resultsEnabled
+            self.usesCustomConfiguration = usesCustomConfiguration
+        }
+        
         ///The status of SIP
         public let resultsEnabled: Bool
         ///If SIP is using a custom configuration
