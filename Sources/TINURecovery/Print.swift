@@ -9,13 +9,13 @@ import Foundation
 import SwiftLoggedPrint
 
 ///Used to manage the printed messanges for this library, check the ITzTravelInTime/SwiftLoggedPrint Library for more info
-internal class Log: LoggedPrinter{
-    override class var prefix: String{
+public class Printer: LoggedPrinter{
+    public override class var prefix: String{
         self.allowsLogging = false
         return "[TINURecovery]"
     }
     
-    override class var printerID: String{
+    public override class var printerID: String{
         return "TINURecoveryPrinter"
     }
 }

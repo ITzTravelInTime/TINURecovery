@@ -49,7 +49,7 @@ open class Recovery: SimulatableDetectable{
                 MEM.state = !FileManager.default.fileExists(atPath: "/usr/bin/sudo")
             }
             
-            Log.print("Is this app/program running inside a macOS Recovery/Installer OS? \(boolToPrettyStr(MEM.state!))")
+            Printer.print("Is this app/program running inside a macOS Recovery/Installer OS? \(boolToPrettyStr(MEM.state!))")
         }
         
         return MEM.state

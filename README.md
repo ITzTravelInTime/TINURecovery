@@ -24,17 +24,24 @@ class Foo: SimulatableDetectable{
         return false
     }
     
+    ///Initializer for compliance with the protocol
+    public required init(){  }
+    
 }
 
-print("Testing status: ")
+print("Testing Foo status: ")
 
 print("Foo status: \(Foo.status)") //returns false
 print("Foo actual status: \(Foo.actualStatus)") //returns false
 
+
+print("Simulating a new status")
 Foo.simulatedStatus = true
 
 print("Foo status: \(Foo.status)") //returns true
 print("Foo actual status: \(Foo.actualStatus)") //returns false
+
+print("Foo testing is complete")
 
 ```
 
@@ -62,8 +69,12 @@ SIP:
 
 import TINURecovery
 
-//This print assumes an unkown SIP state as enabled
-print("Is SIP activated? \(((SIP.status.resultsEnabled ?? true) ? "Yes" : "No"))")
+if let status = SIP.status.resultsEnabled {
+    print("Is SIP activated? \(status ? "Yes" : "No")")
+}else{
+    print("SIP status is unknown")
+}
+
 print("Does SIP use a custom configuration? \(SIP.status.usesCustomConfiguration ? "Yes" : "No")")
 
 ```

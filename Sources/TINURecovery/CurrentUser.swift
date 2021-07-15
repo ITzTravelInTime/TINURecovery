@@ -8,6 +8,8 @@
 
 import Foundation
 
+#if os(macOS)
+
 ///This class is a more elegant way of detecting the current user name and is it's root
 public final class CurrentUser{
     ///Detects the logon name of the current user.
@@ -19,7 +21,7 @@ public final class CurrentUser{
         
         if MEM.state == nil{
             MEM.state = NSUserName()
-            Log.print("Current user is: " + MEM.state!)
+            Printer.print("Current user is: " + MEM.state!)
         }
         
         return MEM.state
@@ -34,9 +36,11 @@ public final class CurrentUser{
         
         if MEM.state == nil{
             MEM.state = name == "root"
-            Log.print("Is the current user Root?: \(boolToPrettyStr(MEM.state!))")
+            Printer.print("Is the current user Root?: \(boolToPrettyStr(MEM.state!))")
         }
         
         return MEM.state
     }
 }
+
+#endif

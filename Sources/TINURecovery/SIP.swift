@@ -7,8 +7,7 @@
 
 import Foundation
 import Command
-import SwiftCPUDetect
-
+//import SwiftCPUDetect
 
 #if os(macOS)
 /**This class manages the SIP detection functions.
@@ -72,7 +71,6 @@ open class SIP: SimulatableDetectable{
                     }
                     */
                     
-                    
                     if let result = (Command.run(cmd: "/usr/bin/csrutil", args: ["status"])){
                     
                         let enabled = result.output.first!.contains("enabled")
@@ -84,23 +82,23 @@ open class SIP: SimulatableDetectable{
                         MEM.status = SIPStatus(resultsEnabled: enabled ? true : (unkown ? nil : false), usesCustomConfiguration: custom )
                         
                     }else{
-                        Log.print("Can't get SIP staus, defaulting to an unkown status")
+                        Printer.print("Can't get SIP staus, defaulting to an unkown status")
                         MEM.status = SIPStatus(resultsEnabled: nil, usesCustomConfiguration: false)
                     }
                     
                 }
             }else{
                 //SIP was introduced with 10.11
-                Log.print("Running on an old OS X version, SIP wasn't implemented yet, so this library will behave like if it was dissbled")
+                Printer.print("Running on an old OS X version, SIP wasn't implemented yet, so this library will behave like if it was dissbled")
                 MEM.status = SIPStatus(resultsEnabled: false, usesCustomConfiguration: false)
             }
             
             if let stat = MEM.status?.resultsEnabled {
-                Log.print("Is SIP Enabled? \(boolToPrettyStr(stat)).")
+                Printer.print("Is SIP Enabled? \(boolToPrettyStr(stat)).")
             }else{
-                Log.print("Is SIP Enabled? We don't know.")
+                Printer.print("Is SIP Enabled? We don't know.")
             }
-            Log.print("Does SIP use a custom configuration? \(boolToPrettyStr(MEM.status!.usesCustomConfiguration)).")
+            Printer.print("Does SIP use a custom configuration? \(boolToPrettyStr(MEM.status!.usesCustomConfiguration)).")
         }
         
         

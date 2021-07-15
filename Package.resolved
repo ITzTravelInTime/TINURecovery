@@ -6,17 +6,8 @@
         "repositoryURL": "https://github.com/ITzTravelInTime/Command",
         "state": {
           "branch": null,
-          "revision": "15c1940237f76097d456ab4d7ce549b61e060ccb",
-          "version": "2.0.5"
-        }
-      },
-      {
-        "package": "SwiftCPUDetect",
-        "repositoryURL": "https://github.com/ITzTravelInTime/SwiftCPUDetect",
-        "state": {
-          "branch": null,
-          "revision": "10fc7e28f8f5c317ef413f8f5df3c002c253edae",
-          "version": "1.1.3"
+          "revision": "3ed89c1485542f34333e983949e1820180ae473e",
+          "version": "2.1.0"
         }
       },
       {

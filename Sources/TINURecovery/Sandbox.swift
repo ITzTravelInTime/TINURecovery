@@ -7,6 +7,7 @@
 
 import Foundation
 
+#if os(macOS)
 ///This class manages program sandbox detection code
 public final class Sandbox{
     ///Detects is the current program is running as sandboxed
@@ -18,7 +19,7 @@ public final class Sandbox{
         
         if MEM.state == nil{
             MEM.state = ProcessInfo.processInfo.environment["APP_SANDBOX_CONTAINER_ID"] != nil
-            Log.print("Is Sandbox enabled? \(boolToPrettyStr(MEM.state!))")
+            Printer.print("Is Sandbox enabled? \(boolToPrettyStr(MEM.state!))")
         }
         
         return MEM.state
@@ -32,10 +33,12 @@ public final class Sandbox{
      */
     public static var hasUnrestrictedAccess: Bool{
         if !isEnabled && CurrentUser.isRoot{
-            Log.print("Keep in mind that this app has unrestricted access now!")
+            Printer.print("Keep in mind that this app has unrestricted access now!")
             return true
         }
-        Log.print("Sadly our access is somewhat restricted")
+        Printer.print("Sadly our access is somewhat restricted")
         return false
     }
 }
+
+#endif
