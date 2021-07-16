@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/ITzTravelInTime/Command",
         "state": {
           "branch": null,
-          "revision": "3ed89c1485542f34333e983949e1820180ae473e",
-          "version": "2.1.0"
+          "revision": "9961c707fc6dedbd75ad34af48debe54d19fde8b",
+          "version": "2.1.1"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/ITzTravelInTime/SwiftLoggedPrint",
         "state": {
           "branch": null,
-          "revision": "e2cd16cdde8f1c7a91ed76ef01b8ac1a5d72dedd",
-          "version": "2.2.1"
+          "revision": "56f8c5195f8eaa857dc3ce372e2f443005e7e29b",
+          "version": "3.0.1"
         }
       }
     ]
