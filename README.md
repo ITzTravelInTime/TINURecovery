@@ -129,6 +129,8 @@ Also having it as it's own library allows for code to be updated separately and 
 # Credits
 
  - ITzTravelInTime (Pietro Caruso) - Project creator and main developer
+ 
+ Source for the SIP bits: https://github.com/dortania/OpenCore-Legacy-Patcher/blob/main/Resources/Constants.py
 
 # Contacts
 
