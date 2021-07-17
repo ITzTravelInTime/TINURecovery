@@ -24,19 +24,50 @@ open class SIP: SimulatableDetectable{
     
     ///Enum representing the bits and the related names for SIP values
     public enum SIPBits: SIPIntegerFormat, Codable, Equatable, CaseIterable, RawRepresentable{
-        case CSR_ALLOW_UNTRUSTED_KEXTS = 0x1 //  - Allows Unsigned Kexts           - Introduced in El Capitan  # noqa: E241
-        case CSR_ALLOW_UNRESTRICTED_FS = 0x2 //  - File System Access              - Introduced in El Capitan  # noqa: E241
-        case CSR_ALLOW_TASK_FOR_PID = 0x4 //   - Unrestricted Debugging          - Introduced in El Capitan  # noqa: E241
-        case CSR_ALLOW_KERNEL_DEBUGGER = 0x8  //  - Allow Kernel Debugger           - Introduced in El Capitan  # noqa: E241
-        case CSR_ALLOW_APPLE_INTERNAL = 0x10 // - Set AppleInternal Features      - Introduced in El Capitan  # noqa: E241
-        case CSR_ALLOW_UNRESTRICTED_DTRACE = 0x20 // - Unrestricted DTrace usage       - Introduced in El Capitan  # noqa: E241
-        case CSR_ALLOW_UNRESTRICTED_NVRAM = 0x40 // - Unrestricted NVRAM write        - Introduced in El Capitan  # noqa: E241
-        case CSR_ALLOW_DEVICE_CONFIGURATION = 0x80 // - Allow Device Configuration(?)   - Introduced in El Capitan  # noqa: E241
-        case CSR_ALLOW_ANY_RECOVERY_OS = 0x100 // - Disable BaseSystem Verification - Introduced in Sierra      # noqa: E241
-        case CSR_ALLOW_UNAPPROVED_KEXTS = 0x200 // - Allow Unapproved Kexts          - Introduced in High Sierra # noqa: E241
-        case CSR_ALLOW_EXECUTABLE_POLICY_OVERRIDE = 0x400 // - Override Executable Policy      - Introduced in Mojave      # noqa: E241
-        case CSR_ALLOW_UNAUTHENTICATED_ROOT = 0x800 // - Allow Root Volume Mounting      - Introduced in Big Sur     # noqa: E241
+        case CSR_ALLOW_UNTRUSTED_KEXTS = 0x1 //  - Allows Unsigned Kexts           - Introduced in El Capitan
+        case CSR_ALLOW_UNRESTRICTED_FS = 0x2 //  - File System Access              - Introduced in El Capitan
+        case CSR_ALLOW_TASK_FOR_PID = 0x4 //   - Unrestricted Debugging          - Introduced in El Capitan
+        case CSR_ALLOW_KERNEL_DEBUGGER = 0x8  //  - Allow Kernel Debugger           - Introduced in El Capitan
+        case CSR_ALLOW_APPLE_INTERNAL = 0x10 // - Set AppleInternal Features      - Introduced in El Capitan
+        case CSR_ALLOW_UNRESTRICTED_DTRACE = 0x20 // - Unrestricted DTrace usage       - Introduced in El Capitan
+        case CSR_ALLOW_UNRESTRICTED_NVRAM = 0x40 // - Unrestricted NVRAM write        - Introduced in El Capitan
+        case CSR_ALLOW_DEVICE_CONFIGURATION = 0x80 // - Allow Device Configuration(?)   - Introduced in El Capitan
+        case CSR_ALLOW_ANY_RECOVERY_OS = 0x100 // - Disable BaseSystem Verification - Introduced in Sierra
+        case CSR_ALLOW_UNAPPROVED_KEXTS = 0x200 // - Allow Unapproved Kexts          - Introduced in High Sierra
+        case CSR_ALLOW_EXECUTABLE_POLICY_OVERRIDE = 0x400 // - Override Executable Policy      - Introduced in Mojave
+        case CSR_ALLOW_UNAUTHENTICATED_ROOT = 0x800 // - Allow Root Volume Mounting      - Introduced in Big Sur
+        
+        public var name: String{
+            switch self {
+            case .CSR_ALLOW_UNTRUSTED_KEXTS:
+                return "CSR_ALLOW_UNTRUSTED_KEXTS"
+            case .CSR_ALLOW_UNRESTRICTED_FS:
+                return "CSR_ALLOW_UNRESTRICTED_FS"
+            case .CSR_ALLOW_TASK_FOR_PID:
+                return "CSR_ALLOW_TASK_FOR_PID"
+            case .CSR_ALLOW_KERNEL_DEBUGGER:
+                return "CSR_ALLOW_KERNEL_DEBUGGER"
+            case .CSR_ALLOW_APPLE_INTERNAL:
+                return "CSR_ALLOW_APPLE_INTERNAL"
+            case .CSR_ALLOW_UNRESTRICTED_DTRACE:
+                return "CSR_ALLOW_UNRESTRICTED_DTRACE"
+            case .CSR_ALLOW_UNRESTRICTED_NVRAM:
+                return "CSR_ALLOW_UNRESTRICTED_NVRAM"
+            case .CSR_ALLOW_DEVICE_CONFIGURATION:
+                return "CSR_ALLOW_DEVICE_CONFIGURATION"
+            case .CSR_ALLOW_ANY_RECOVERY_OS:
+                return "CSR_ALLOW_ANY_RECOVERY_OS"
+            case .CSR_ALLOW_UNAPPROVED_KEXTS:
+                return "CSR_ALLOW_UNAPPROVED_KEXTS"
+            case .CSR_ALLOW_EXECUTABLE_POLICY_OVERRIDE:
+                return "CSR_ALLOW_EXECUTABLE_POLICY_OVERRIDE"
+            case .CSR_ALLOW_UNAUTHENTICATED_ROOT:
+                return "CSR_ALLOW_UNAUTHENTICATED_ROOT"
+            }
+        }
     }
+    
+    
     
     ///This struct is used to represent the current SIP status
     public struct SIPStatus: Codable, Equatable{
