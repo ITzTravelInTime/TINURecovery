@@ -1,6 +1,6 @@
 import Foundation
 import TINURecovery
-import class Command.Printer
+import Command
 
 //Disasble library's debug printing for convencience
 
@@ -52,6 +52,9 @@ if let status = SIP.status.resultsEnabled {
 }
 
 print("Does SIP use a custom configuration? \(SIP.status.usesCustomConfiguration ? "Yes" : "No")")
+
+print("Detailed SIP Configuration")
+print(SIP.status)
 
 //This is an example usage for CurrentUser
 
