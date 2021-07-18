@@ -1,11 +1,9 @@
 import Foundation
 import TINURecovery
-import Command
 
 //Disasble library's debug printing for convencience
 
 TINURecovery.Printer.enabled = false
-Command.Printer.enabled = false
 
 //This class is an example of a SimulatableDetectable type
 
@@ -45,6 +43,8 @@ print("Is this program running on a macOS Recovery/Installer OS? \((Recovery.sta
 
 //This is an example usage for SIP
 
+print("SIP raw status: 0x\(String(SIP.status, radix: 16) )")
+
 if let status = SIP.status.resultsEnabled {
     print("Is SIP activated? \(status ? "Yes" : "No")")
 }else{
@@ -54,7 +54,11 @@ if let status = SIP.status.resultsEnabled {
 print("Does SIP use a custom configuration? \(SIP.status.usesCustomConfiguration ? "Yes" : "No")")
 
 print("Detailed SIP Configuration")
-print(SIP.status)
+print(SIP.status.detailedConfiguration)
+
+if let args = NVRAM.getString(name: "boot-args") {
+    print("Current boot args: \(args)")
+}
 
 //This is an example usage for CurrentUser
 

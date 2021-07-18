@@ -108,6 +108,22 @@ print("What's the user name? \(CurrentUser.name)")
 
 ```
 
+NVRAM:
+
+- A simple way to read and write NVRAM values
+
+    Example usage:
+    
+```swift
+
+import TINURecovery
+
+if let args = NVRAM.getString(name: "boot-args") {
+    print("Current boot args: \(args)")
+}
+
+```
+
 # Who should use this Library?
 
 This library should be used by swift apps/programs that requires to obtain particular info about the system, things like the SIP status, or particular info about the app/program itself like the if sandboxing is enabled.
@@ -130,7 +146,12 @@ Also having it as it's own library allows for code to be updated separately and 
 
  - ITzTravelInTime (Pietro Caruso) - Project creator and main developer
  
- Source for the SIP bits: https://github.com/dortania/OpenCore-Legacy-Patcher/blob/main/Resources/Constants.py
+  - Source for the SIP bits: 
+    https://opensource.apple.com/source/xnu/xnu-7195.121.3/bsd/sys/csr.h.auto.html 
+    https://github.com/dortania/OpenCore-Legacy-Patcher/blob/main/Resources/Constants.py
+  
+  - NVRAM Code: https://gist.github.com/hansen-m/3e9632ce6fd5b9e3a768321dc5bb4bdc
+ 
 
 # Contacts
 

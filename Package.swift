@@ -19,7 +19,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         //.package(url: "https://github.com/ITzTravelInTime/SwiftCPUDetect", from: "1.2.0"),  //no longer used, it was required by the SIP detector but it's no longer needed
-        .package(url: "https://github.com/ITzTravelInTime/Command", from: "2.1.0"),
+        //.package(url: "https://github.com/ITzTravelInTime/Command", from: "2.1.0"), //no longer needed because now the SIP stuff is get using the IO Registry
         .package(url: "https://github.com/ITzTravelInTime/SwiftLoggedPrint", from: "3.0.1")
     ],
     targets: [
@@ -28,7 +28,7 @@ let package = Package(
         .target(
             name: "TINURecovery",
             dependencies: [
-                .byName(name: "Command"),
+                //.byName(name: "Command"),
                 //.byName(name: "SwiftCPUDetect"),
                 .byName(name: "SwiftLoggedPrint")
             ]),

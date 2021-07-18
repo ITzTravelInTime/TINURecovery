@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "Command",
-        "repositoryURL": "https://github.com/ITzTravelInTime/Command",
-        "state": {
-          "branch": null,
-          "revision": "9961c707fc6dedbd75ad34af48debe54d19fde8b",
-          "version": "2.1.1"
-        }
-      },
-      {
         "package": "SwiftLoggedPrint",
         "repositoryURL": "https://github.com/ITzTravelInTime/SwiftLoggedPrint",
         "state": {
