@@ -144,14 +144,14 @@ Also having it as it's own library allows for code to be updated separately and 
 
 # Libraries used
 
- - [ITzTravelInTime/SwiftCPUDetect]("https://github.com/ITzTravelInTime/SwiftCPUDetect")
- - [ITzTravelInTime/Command]("https://github.com/ITzTravelInTime/Command")
- - [ITzTravelInTime/SwiftLoggedPrint]( "https://github.com/ITzTravelInTime/SwiftLoggedPrint")
+ - [ITzTravelInTime/SwiftCPUDetect](https://github.com/ITzTravelInTime/SwiftCPUDetect)
+ - [ITzTravelInTime/Command](https://github.com/ITzTravelInTime/Command)
+ - [ITzTravelInTime/SwiftLoggedPrint](https://github.com/ITzTravelInTime/SwiftLoggedPrint)
 
 # Credits
 
- - [ITzTravelInTime (Pietro Caruso)]("https://github.com/ITzTravelInTime") - Project creator and main developer
- - [khronokernel]("https://github.com/khronokernel") - Help with SIP detection, bit values and their descriptions.
+ - [ITzTravelInTime (Pietro Caruso)](https://github.com/ITzTravelInTime) - Project creator and main developer
+ - [khronokernel](https://github.com/khronokernel) - Help with SIP detection, bit values and their descriptions.
  
   - Source for the SIP bits: 
     https://opensource.apple.com/source/xnu/xnu-7195.121.3/bsd/sys/csr.h.auto.html 
