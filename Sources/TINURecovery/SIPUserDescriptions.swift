@@ -20,7 +20,7 @@ public extension SIP.SIPStatus{
         }
         
         if self & SIP.SIPBits.CSR_ALLOW_APPLE_INTERNAL.rawValue != 0{
-            ret += "(Apple Internal)"
+            ret += " (Apple Internal)"
         }else{
             ret += self.usesCustomConfiguration ? " (custom config.)" : ""
         }
