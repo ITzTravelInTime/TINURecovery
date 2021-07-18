@@ -47,7 +47,9 @@ print("Foo testing is complete")
 
 Recovery:
 
-- [Available only on macOS, Requires Sandboxing to be turned off to work] detects if the current program is running inside a macOS Installer/Recovery OS and allows for debugabbility inside a normal macOS by creating a subclass and overriding the 'simulatedStatus' value.
+**WARNING**: Requires sandboxing to be disabled.
+
+- [Available only on macOS] detects if the current program is running inside a macOS Installer/Recovery OS and allows for debugabbility inside a normal macOS by creating a subclass and overriding the 'simulatedStatus' value.
 
     Basic example usage:
 
@@ -61,7 +63,9 @@ print("Is this program running on a macOS Recovery/Installer OS? \((Recovery.sta
 
 SIP:
 
-- [Available only on macOS, Requires Sandboxing to be turned off to work] detects the status of macOS's SIP (System Integrity Protection) and allows for debugabbility reguardless of the actual status of it on the computer by creating a subclass and overriding the 'simulatedStatus' propery.
+**WARNING**: Requires sandboxing to be disabled.
+
+- [Available only on macOS] detects the status of macOS's SIP (System Integrity Protection) and allows for debugabbility reguardless of the actual status of it on the computer by creating a subclass and overriding the 'simulatedStatus' propery.
 
     Basic example usage:
 
@@ -81,7 +85,7 @@ print("Does SIP use a custom configuration? \(SIP.status.usesCustomConfiguration
 
 Sandbox: 
 
-- Used to detect if the current app is running with the app Sandbox enabled or not.
+- [Available only on macOS] Used to detect if the current app is running with the app Sandbox enabled or not.
 
     Example usage:
 
@@ -95,7 +99,7 @@ print("Is this app sandboxed? \(Sandbox.isEnabled ? "Yes" : "No")")
 
 User:
 
-- Just a more convenenint way of getting the current user's logon name and if it's the Root user.
+- [Available only on macOS] Just a more convenenint way of getting the current user's logon name and if it's the Root user.
 
     Example usage:
 
@@ -110,7 +114,9 @@ print("What's the user name? \(CurrentUser.name)")
 
 NVRAM:
 
-- A simple way to read and write NVRAM values
+**WARNING**: Requires sandboxing to be disabled.
+
+- [Available only on macOS] A simple way to read and write NVRAM values
 
     Example usage:
     
