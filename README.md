@@ -144,7 +144,8 @@ Also having it as it's own library allows for code to be updated separately and 
 
 # Credits
 
- - ITzTravelInTime (Pietro Caruso) - Project creator and main developer
+ - [ITzTravelInTime (Pietro Caruso)]("https://github.com/ITzTravelInTime") - Project creator and main developer
+ - [khronokernel]("https://github.com/khronokernel") - Help with SIP detection, bit values and their descriptions.
  
   - Source for the SIP bits: 
     https://opensource.apple.com/source/xnu/xnu-7195.121.3/bsd/sys/csr.h.auto.html 

@@ -12,6 +12,7 @@ public class NVRAM {
 
     ///Sets a string into NVRAM
     public class func setString(name: String, value: String) {
+        assert(!Sandbox.isEnabled, "NVRAM function works only for non-sandboxed apps")
         
         let nameRef = CFStringCreateWithCString(kCFAllocatorDefault, name, CFStringBuiltInEncodings.UTF8.rawValue)
         
@@ -26,6 +27,7 @@ public class NVRAM {
     
     ///Sets an integer value into NVRAM
     public class func setInteger<T: FixedWidthInteger>(name: String, value: T) {
+        assert(!Sandbox.isEnabled, "NVRAM function works only for non-sandboxed apps")
         let nameRef = CFStringCreateWithCString(kCFAllocatorDefault, name, CFStringBuiltInEncodings.UTF8.rawValue)
         
         var val = T(value)
@@ -36,7 +38,7 @@ public class NVRAM {
 
     ///Reads an string value from NVRAM
     public class func getString(name: String) -> String? {
-        
+        assert(!Sandbox.isEnabled, "NVRAM function works only for non-sandboxed apps")
         let nameRef = CFStringCreateWithCString(kCFAllocatorDefault, name, CFStringBuiltInEncodings.UTF8.rawValue)
         
         guard let valueRef = IORegistryEntryCreateCFProperty(optionsRef, nameRef, kCFAllocatorDefault, 0) else{
@@ -55,6 +57,7 @@ public class NVRAM {
     
     ///Reads an integer value from NVRAM
     public class func getInteger<T: FixedWidthInteger>(name: String) -> T?{
+        assert(!Sandbox.isEnabled, "NVRAM function works only for non-sandboxed apps")
         let nameRef = CFStringCreateWithCString(kCFAllocatorDefault, name, CFStringBuiltInEncodings.UTF8.rawValue)
         
         guard let valueRef = IORegistryEntryCreateCFProperty(optionsRef, nameRef, kCFAllocatorDefault, 0) else{

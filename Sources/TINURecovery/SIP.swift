@@ -41,36 +41,6 @@ open class SIP: SimulatableDetectable{
         case CSR_ALLOW_EXECUTABLE_POLICY_OVERRIDE = 0x400 // - Override Executable Policy      - Introduced in Mojave
         case CSR_ALLOW_UNAUTHENTICATED_ROOT = 0x800 //       - Allow Root Volume Mounting      - Introduced in Big Sur
         
-        ///The string name of the current value
-        public var name: String{
-            switch self {
-            case .CSR_ALLOW_UNTRUSTED_KEXTS:
-                return "CSR_ALLOW_UNTRUSTED_KEXTS"
-            case .CSR_ALLOW_UNRESTRICTED_FS:
-                return "CSR_ALLOW_UNRESTRICTED_FS"
-            case .CSR_ALLOW_TASK_FOR_PID:
-                return "CSR_ALLOW_TASK_FOR_PID"
-            case .CSR_ALLOW_KERNEL_DEBUGGER:
-                return "CSR_ALLOW_KERNEL_DEBUGGER"
-            case .CSR_ALLOW_APPLE_INTERNAL:
-                return "CSR_ALLOW_APPLE_INTERNAL"
-            case .CSR_ALLOW_UNRESTRICTED_DTRACE:
-                return "CSR_ALLOW_UNRESTRICTED_DTRACE"
-            case .CSR_ALLOW_UNRESTRICTED_NVRAM:
-                return "CSR_ALLOW_UNRESTRICTED_NVRAM"
-            case .CSR_ALLOW_DEVICE_CONFIGURATION:
-                return "CSR_ALLOW_DEVICE_CONFIGURATION"
-            case .CSR_ALLOW_ANY_RECOVERY_OS:
-                return "CSR_ALLOW_ANY_RECOVERY_OS"
-            case .CSR_ALLOW_UNAPPROVED_KEXTS:
-                return "CSR_ALLOW_UNAPPROVED_KEXTS"
-            case .CSR_ALLOW_EXECUTABLE_POLICY_OVERRIDE:
-                return "CSR_ALLOW_EXECUTABLE_POLICY_OVERRIDE"
-            case .CSR_ALLOW_UNAUTHENTICATED_ROOT:
-                return "CSR_ALLOW_UNAUTHENTICATED_ROOT"
-            }
-        }
-        
         ///A mask integer with all the known SIP values
         public static var bitMask: SIPIntegerFormat{
             var ret: SIPIntegerFormat = 0
