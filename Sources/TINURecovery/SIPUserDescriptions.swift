@@ -8,7 +8,7 @@
 import Foundation
 import AppKit
 
-extension SIP.SIPStatus{
+public extension SIP.SIPStatus{
     ///Returns a user-friendly string reporting the current SIP status
     func statusStrig() -> String{
         var ret = ""
@@ -31,7 +31,7 @@ extension SIP.SIPStatus{
     }
 }
 
-extension SIP.SIPBits{
+public extension SIP.SIPBits{
     
     ///The user-friendly description of the current value
     ///
@@ -66,7 +66,7 @@ extension SIP.SIPBits{
     }
     
     ///The string name of the current value
-    public var name: String{
+    var name: String{
         switch self {
         case .CSR_ALLOW_UNTRUSTED_KEXTS:
             return "CSR_ALLOW_UNTRUSTED_KEXTS"
