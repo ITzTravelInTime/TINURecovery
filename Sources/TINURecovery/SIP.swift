@@ -182,8 +182,9 @@ public extension SIP.SIPStatus{
     
     ///Indicates if SIP is fully enabled, fully disabled or uses an undeterminated configuration
     var resultsEnabled: Bool!{
-        switch (self & SIP.SIPBits.CSR_DISABLE_FLAGS) {
-        case SIP.SIPBits.CSR_DISABLE_FLAGS:
+        let ref = (SIP.SIPBits.CSR_DISABLE_FLAGS & (~SIP.SIPBits.CSR_ALLOW_APPLE_INTERNAL.rawValue) )
+        switch (self & ref) {
+        case ref:
             return false
         case 0:
             return true
