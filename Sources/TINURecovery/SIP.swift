@@ -110,7 +110,7 @@ open class SIP: SimulatableDetectable{
             static var status: SIPStatus? = nil
         }
         
-        if MEM.status == nil{
+        if MEM.status == nil || Recovery.status {
             //SIP wasn't a thing until OS X El Capitan
             if #available(OSX 10.11, *){
                 DispatchQueue.global(qos: .background).sync {
