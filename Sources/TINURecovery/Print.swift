@@ -10,12 +10,13 @@ import SwiftLoggedPrint
 
 ///Used to manage the printed messanges for this library, check the ITzTravelInTime/SwiftLoggedPrint Library for more info
 public class Printer: LoggedPrinter{
+    
     public override class var prefix: String{
-        self.allowsLogging = false
         return "[TINURecovery]"
     }
     
     public override class var printerID: String{
         return "TINURecoveryPrinter"
     }
+    
 }
