@@ -10,6 +10,7 @@ import Foundation
 #if os(macOS)
 ///This class manages program sandbox detection code
 public final class Sandbox{
+    
     ///Detects is the current program is running as sandboxed
     public static var isEnabled: Bool {
         //Uses a static value to avoid repeting the detection code for each call of the variable

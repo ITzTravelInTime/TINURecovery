@@ -45,6 +45,8 @@ print("Is this program running on a macOS Recovery/Installer OS? \((Recovery.sta
 
 print("SIP raw status: 0x\(String(SIP.status, radix: 16) )")
 
+print("Is SIP fully disabled? \(SIP.status.resultsFullyDisabled ? "Yes" : "No")")
+
 if let status = SIP.status.resultsEnabled {
     print("Is SIP activated? \(status ? "Yes" : "No")")
 }else{

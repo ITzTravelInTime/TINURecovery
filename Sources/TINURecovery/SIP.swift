@@ -75,7 +75,7 @@ open class SIP: SimulatableDetectable{
             return ret
         }
         
-        ///A mask integer wth all the flags expected to be set for SIP to be on or off
+        ///A mask integer wth all the flags expected to be set for SIP by csrutil when sip is enabled or disabled using the system recovery
         public static var CSR_DISABLE_FLAGS: SIPIntegerFormat{
             
             return CSR_ALLOW_UNTRUSTED_KEXTS.rawValue | CSR_ALLOW_UNRESTRICTED_FS.rawValue | CSR_ALLOW_TASK_FOR_PID.rawValue | CSR_ALLOW_KERNEL_DEBUGGER.rawValue | CSR_ALLOW_APPLE_INTERNAL.rawValue | CSR_ALLOW_UNRESTRICTED_DTRACE.rawValue | CSR_ALLOW_UNRESTRICTED_NVRAM.rawValue
@@ -180,7 +180,7 @@ public extension SIP.SIPStatus{
         return (self & (~SIP.SIPBits.CSR_VALID_FLAGS)) != 0
     }
     
-    ///Indicates if SIP is fully enabled, fully disabled or uses an undeterminated configuration
+    ///Indicates if SIP has enabled all the valus that csrutil will change when it sets the SIP enabled, or disabled or uses a mixed configuration
     var resultsEnabled: Bool!{
         let ref = (SIP.SIPBits.CSR_DISABLE_FLAGS & (~SIP.SIPBits.CSR_ALLOW_APPLE_INTERNAL.rawValue) )
         switch (self & ref) {
@@ -191,6 +191,19 @@ public extension SIP.SIPStatus{
         default:
             return nil
         }
+    }
+    
+    ///Indicates if SIP has all the valus supported by the current OS all enabled
+    var resultsFullyDisabled: Bool{
+        let ref = SIP.SIPBits.CSR_VALID_FLAGS & (~SIP.SIPBits.CSR_ALLOW_APPLE_INTERNAL.rawValue)
+        
+        switch self & ref {
+        case ref:
+            return true
+        default:
+            return false
+        }
+        
     }
     
     ///Returns the SIP configuration as an integer

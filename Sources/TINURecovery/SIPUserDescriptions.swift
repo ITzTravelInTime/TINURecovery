@@ -13,8 +13,10 @@ public extension SIP.SIPStatus{
     func statusStrig() -> String{
         var ret = ""
         
+        let fully = self.resultsFullyDisabled
+        
         if let stat = self.resultsEnabled{
-            ret += "SIP is \(stat ? "enabled" : "disabled")"
+            ret += "SIP is \(fully ? "fully " : "")\(stat ? "enabled" : "disabled")"
         }else{
             ret += "SIP status unknown"
         }
