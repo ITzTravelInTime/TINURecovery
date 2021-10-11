@@ -43,7 +43,7 @@ public extension SIP.SIPBits{
         case .CSR_ALLOW_UNTRUSTED_KEXTS:
             return "This bit, if enabled, indicates that the system will allow loading unsigned KEXTs."
         case .CSR_ALLOW_UNRESTRICTED_FS:
-            return "This bit, if enabled, indicates that the system will allow modifications to the ROOT volume"
+            return "This bit, if enabled, indicates that the system will allow modifications to macOS ROOT/BOOT volumes."
         case .CSR_ALLOW_TASK_FOR_PID:
             return "This bit, if enabled, indicates that the system will allow the usage of the `task_for_pid()` function (Debugging related feature)"
         case .CSR_ALLOW_KERNEL_DEBUGGER:

@@ -141,7 +141,6 @@ open class SIP: SimulatableDetectable{
                     }
                     
                     MEM.status = num
-                    
                 }
             }else{
                 //SIP was introduced with 10.11
@@ -151,11 +150,14 @@ open class SIP: SimulatableDetectable{
             if let stat = MEM.status?.resultsEnabled {
                 Printer.print(" [SIP] Is SIP Enabled? \(boolToPrettyStr(stat)).")
             }else{
-                Printer.print(" [SIP] Is SIP Enabled? We don't know.")
+                Printer.print(" [SIP] Is SIP Enabled? We don't know because the SIP status is either unsupported or unkown.")
             }
             
-            Printer.print(" [SIP] Does SIP use a custom configuration? \(boolToPrettyStr(MEM.status!.usesCustomConfiguration)).")
-            Printer.print(" [SIP] Obtained SIP configuration bits: \(MEM.status!.detailedConfiguration)")
+            if MEM.status != nil{
+                Printer.print(" [SIP] Does SIP use a custom configuration? \(boolToPrettyStr(MEM.status?.usesCustomConfiguration ?? true)).")
+                Printer.print(" [SIP] Obtained SIP configuration bits: \((MEM.status ?? 0).detailedConfiguration )")
+            }
+            
         }
         
         return MEM.status ?? 0 //Defaults to enabled SIP
