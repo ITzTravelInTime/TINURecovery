@@ -1,6 +1,5 @@
 //Credits:
 //http://www.opensource.apple.com/source/system_cmds/system_cmds-643.30.1/nvram.tproj/nvram.c
-//https://opensource.apple.com/source/system_cmds/system_cmds-643.30.1/nvram.tproj/nvram.c
 
 import IOKit
 import Foundation

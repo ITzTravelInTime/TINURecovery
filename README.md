@@ -6,7 +6,7 @@ Library with the Recovery Mode, SIP, Sandbox and User detection functions used b
 
 SimulatableDetectable:
 
-- A protocol for objects that needs to have simulated debug states. 
+- A set of protocols for objects that needs to have simulated debug states. 
     
     Example usage:
 
@@ -20,7 +20,7 @@ class Foo: SimulatableDetectable{
     static var simulatedStatus: Bool? = nil
     
     ///Returns the actual status
-    static var actualStatus: Bool{
+    static func calculateStatus() -> Bool{
         return false
     }
     
@@ -34,7 +34,6 @@ print("Testing Foo status: ")
 print("Foo status: \(Foo.status)") //returns false
 print("Foo actual status: \(Foo.actualStatus)") //returns false
 
-
 print("Simulating a new status")
 Foo.simulatedStatus = true
 
@@ -44,6 +43,22 @@ print("Foo actual status: \(Foo.actualStatus)") //returns false
 print("Foo testing is complete")
 
 ```
+
+SimpleReachability:
+
+- Provvides a simple way to check if network conenction is available.
+
+Basic example usage
+
+```swift
+
+import TINURecovery
+
+print("Is the computer connected to the network? \(SimpleReachability.status ? "Yes" : "No")")
+
+```
+
+- 
 
 Recovery:
 

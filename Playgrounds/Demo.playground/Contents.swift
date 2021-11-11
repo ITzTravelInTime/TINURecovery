@@ -13,12 +13,12 @@ class Foo: SimulatableDetectable{
     static var simulatedStatus: Bool? = nil
     
     ///Returns the actual status
-    static var actualStatus: Bool{
+    static func calculateStatus() -> Bool {
         return false
     }
     
     ///Initializer for compliance with the protocol
-    public required init(){  }
+    public required init(){ }
     
 }
 
@@ -70,5 +70,10 @@ print("What's the user name? \(CurrentUser.name)")
 //This is an example usage for the Sandbox Detection
 
 print("Is this app sandboxed? \(Sandbox.isEnabled ? "Yes" : "No")")
+
+//This is an example usage for SimpleReachability
+
+print("Is the computer connected to the network? \(SimpleReachability.status ? "Yes" : "No")")
+
 
 #endif

@@ -13,7 +13,8 @@ import Foundation
  You can change the `simulatedStatus` value for debugging purposes, but to have more control on it and for actual usage is reccommended (but not necessary) using a subclass of this one, and ovverriding the `simulatedStatus` variable to use it with your own debug variables system.
  
  */
-open class Recovery: SimulatableDetectable{
+open class Recovery: SimulatableDetectableOneTime{
+    public static var storedStatus: Bool? = nil
     
     /**
      Used to simulate the status for debugging purposes.
@@ -34,25 +35,19 @@ open class Recovery: SimulatableDetectable{
      
      Use this only if this information is needed to perform tasks that only works inside the macOS Recovery/Installer OS evironment.
      */
-    public static var actualStatus: Bool{
-        //Uses a static value to avoid repeting the detection code for each call of the variable
-        struct MEM{
-            static var state: Bool! = nil
+    public static func calculateStatus() -> Bool {
+        
+        var _state = false
+        
+        //This check is worth making only if the app has access to the system files
+        if Sandbox.hasUnrestrictedAccess{
+            //Recovery/Installer OSes don't have the sudo executable and the user is always Root
+            _state = !FileManager.default.fileExists(atPath: "/usr/bin/sudo") && CurrentUser.isRoot
         }
         
-        if MEM.state == nil{
-            MEM.state = false
-            
-            //This check is worth making only if the app has access to the system files
-            if Sandbox.hasUnrestrictedAccess{
-                //Recovery/Installer OSes don't have the sudo executable and the user is always Root
-                MEM.state = !FileManager.default.fileExists(atPath: "/usr/bin/sudo")
-            }
-            
-            Printer.print("Is this app/program running inside a macOS Recovery/Installer OS? \(boolToPrettyStr(MEM.state!))")
-        }
+        Printer.print("Is this app/program running inside a macOS Recovery/Installer OS? \(boolToPrettyStr(_state))")
         
-        return MEM.state
+        return _state
     }
 }
 #endif

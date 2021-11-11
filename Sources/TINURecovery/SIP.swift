@@ -105,62 +105,56 @@ open class SIP: SimulatableDetectable{
      Use this only if this information is needed to perform tasks that only works with either SIP turned On or Off.
      
      */
-    public static var actualStatus: SIPStatus{
-        struct MEM{
-            static var status: SIPStatus? = nil
-        }
+    public static func calculateStatus() -> UInt32 {
+        //SIP wasn't a thing until OS X El Capitan
         
-        if MEM.status == nil || Recovery.status {
-            //SIP wasn't a thing until OS X El Capitan
-            if #available(OSX 10.11, *){
-                DispatchQueue.global(qos: .background).sync {
-                    /*
-                    guard let hexStatus = (Command.run(cmd: "/usr/sbin/nvram", args: ["csr-active-config"]))?.outputString() else{
-                        Printer.print(" [SIP] Can't get SIP staus, due to a problem while reading nvram info")
-                        return
-                    }
- 
-                    var numberString = ""
-                    
-                    print("hexStatus: \(hexStatus)")
-                    
-                    //Byte endianess flip
-                    for i in hexStatus.split(separator: "%").dropFirst().reversed(){
-                        numberString += String(i)
-                    }
-                    
-                    guard let num = SIPIntegerFormat(numberString, radix: 16) else {
-                        Printer.print(" [SIP] Can't get SIP staus, due to a problem while converting the nvram output to a valid integer")
-                        return
-                    }
-                     */
-                    
-                    guard let num: SIPStatus = NVRAM.getInteger(name: "csr-active-config") else{
-                        Printer.print(" [SIP] Can't get SIP staus, due to a problem while converting the nvram output to a valid integer")
-                        return
-                    }
-                    
-                    MEM.status = num
+        var ret: SIPStatus = 0
+        
+        if #available(OSX 10.11, *){
+            DispatchQueue.global(qos: .background).sync {
+                /*
+                guard let hexStatus = (Command.run(cmd: "/usr/sbin/nvram", args: ["csr-active-config"]))?.outputString() else{
+                    Printer.print(" [SIP] Can't get SIP staus, due to a problem while reading nvram info")
+                    return
                 }
-            }else{
-                //SIP was introduced with 10.11
-                Printer.print(" [SIP] Running on an old OS X version, SIP wasn't implemented yet")
+
+                var numberString = ""
+                
+                print("hexStatus: \(hexStatus)")
+                
+                //Byte endianess flip
+                for i in hexStatus.split(separator: "%").dropFirst().reversed(){
+                    numberString += String(i)
+                }
+                
+                guard let num = SIPIntegerFormat(numberString, radix: 16) else {
+                    Printer.print(" [SIP] Can't get SIP staus, due to a problem while converting the nvram output to a valid integer")
+                    return
+                }
+                 */
+                
+                guard let num: SIPStatus = NVRAM.getInteger(name: "csr-active-config") else{
+                    Printer.print(" [SIP] Can't get SIP staus, due to a problem while converting the nvram output to a valid integer")
+                    return
+                }
+                
+                ret = num
             }
-            
-            if let stat = MEM.status?.resultsEnabled {
-                Printer.print(" [SIP] Is SIP Enabled? \(boolToPrettyStr(stat)).")
-            }else{
-                Printer.print(" [SIP] Is SIP Enabled? We don't know because the SIP status is either unsupported or unkown.")
-            }
-            
-            if MEM.status != nil{
-                Printer.print(" [SIP] Does SIP use a custom configuration? \(boolToPrettyStr(MEM.status?.usesCustomConfiguration ?? true)).")
-                Printer.print(" [SIP] Obtained SIP configuration bits: \((MEM.status ?? 0).detailedConfiguration )")
-            }
-            
+        }else{
+            //SIP was introduced with 10.11
+            Printer.print(" [SIP] Running on an old OS X version, SIP wasn't implemented yet")
         }
         
-        return MEM.status ?? 0 //Defaults to enabled SIP
+        if let stat = ret.resultsEnabled {
+            Printer.print(" [SIP] Is SIP Enabled? \(boolToPrettyStr(stat)).")
+        }else{
+            Printer.print(" [SIP] Is SIP Enabled? We don't know because the SIP status is either unsupported or unkown.")
+        }
+        
+        Printer.print(" [SIP] Obtained SIP configuration bits: \(ret.detailedConfiguration )")
+        Printer.print(" [SIP] Does SIP use a custom configuration? \(boolToPrettyStr(ret.usesCustomConfiguration)).")
+        
+        return ret
     }
     
 }
@@ -179,7 +173,11 @@ public extension SIP.SIPStatus{
     
     ///Indicates if SIP is using a custom configuration or not
     var usesCustomConfiguration: Bool{
-        return (self & (~SIP.SIPBits.CSR_VALID_FLAGS)) != 0
+        
+        let check = self & ~SIP.SIPBits.CSR_ALLOW_APPLE_INTERNAL.rawValue
+        
+        return check != 0 && check != (SIP.SIPBits.CSR_DISABLE_FLAGS & SIP.SIPBits.CSR_VALID_FLAGS & ~SIP.SIPBits.CSR_ALLOW_APPLE_INTERNAL.rawValue)
+        
     }
     
     ///Indicates if SIP has enabled all the valus that csrutil will change when it sets the SIP enabled, or disabled or uses a mixed configuration
