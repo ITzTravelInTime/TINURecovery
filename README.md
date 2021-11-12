@@ -1,6 +1,6 @@
 # TINURecovery
 
-Library with the Recovery Mode, SIP, Sandbox and User detection functions used by [TINU](https://github.com/ITzTravelInTime/TINU)
+Library with the Recovery Mode, SIP, Sandbox, User detection, nvram and network detection functions used by [TINU](https://github.com/ITzTravelInTime/TINU)
 
 # Features and usage
 
