@@ -180,7 +180,7 @@ Also having it as it's own library allows for code to be updated separately and 
  - ITzTravelInTime (Pietro Caruso): piecaruso97@gmail.com
 
 # Copyright
-
+TINURecovery: Library with the Recovery Mode, SIP, Sandbox, User detection, nvram and network detection functions used by TINU.
 Copyright (C) 2021 Pietro Caruso
 
 This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.

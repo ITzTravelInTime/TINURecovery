@@ -1,17 +1,26 @@
-//
-//  SimpleReachability.swift
-//  
-//
-//  Created by ITzTravelInTime on 10/11/2021.
-//
+/*
+ TINURecovery: Library with the Recovery Mode, SIP, Sandbox, User detection, nvram and network detection functions used by TINU.
+ Copyright (C) 2021 Pietro Caruso
 
-import Cocoa
+ This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
+
+ This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ */
+
+#if os(macOS)
+import AppKit
+#elseif os(iOS)
+import UIKit
+#endif
+
 import SystemConfiguration
 import SwiftLoggedPrint
 
 ///This class is used to get the current status of the network conenction
 open class SimpleReachability: SimulatableDetectableTemporized {
-    public static var expirationInterval: TimeInterval = 30.0
+    public static var expirationInterval: TimeInterval = 30.0 //waits 30 seconds before attempting new checks
     public static var expiration: Date = Date()
     public static var storedStatus: Bool? = nil
     
@@ -45,14 +54,6 @@ open class SimpleReachability: SimulatableDetectableTemporized {
             return false
         }
 
-        /* Only Working for WIFI
-        let isReachable = flags == .reachable
-        let needsConnection = flags == .connectionRequired
-
-        return isReachable && !needsConnection
-        */
-
-        // Working for Cellular and WIFI
         let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
         let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
         let ret = (isReachable && !needsConnection)
