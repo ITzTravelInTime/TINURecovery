@@ -20,7 +20,7 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         //.package(url: "https://github.com/ITzTravelInTime/SwiftCPUDetect", from: "1.2.0"),  //no longer used, it was required by the SIP detector but it's no longer needed
         //.package(url: "https://github.com/ITzTravelInTime/Command", from: "2.1.0"), //no longer needed because now the SIP stuff is get using the IO Registry
-        .package(url: "https://github.com/ITzTravelInTime/SwiftLoggedPrint", from: "3.0.1")
+        .package(url: "https://github.com/ITzTravelInTime/SwiftLoggedPrint", from: "3.2.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
