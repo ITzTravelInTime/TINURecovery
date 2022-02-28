@@ -58,7 +58,7 @@ print("Does SIP use a custom configuration? \(SIP.status.usesCustomConfiguration
 print("Detailed SIP Configuration")
 print(SIP.status.detailedConfiguration)
 
-if let args = NVRAM.getString(name: "boot-args") {
+if let args = NVRAM.getString(forKey: "boot-args") {
     print("Current boot args: \(args)")
 }
 

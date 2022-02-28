@@ -9,13 +9,16 @@
  You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-//Credits:
-//http://www.opensource.apple.com/source/system_cmds/system_cmds-643.30.1/nvram.tproj/nvram.c
+import Foundation
 
 #if os(macOS)
 import IOKit
-import Foundation
 
+import TINUIORegistry
+
+public let NVRAM = TINUIORegistry.IONVRAM
+
+/*
 ///Class used for NVRAM management
 public class NVRAM {
     
@@ -95,5 +98,5 @@ public class NVRAM {
     }
     
 }
-
+*/
 #endif

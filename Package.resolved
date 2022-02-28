@@ -9,6 +9,15 @@
           "revision": "5236d5d1bcf0306d316bb6ac0af9ee6f07894f2f",
           "version": "3.2.0"
         }
+      },
+      {
+        "package": "TINUIORegistry",
+        "repositoryURL": "https://github.com/ITzTravelInTime/TINUIORegistry",
+        "state": {
+          "branch": "main",
+          "revision": "d851b7ce8d175b88a4803c3ef36b890305e45c2b",
+          "version": null
+        }
       }
     ]
   },

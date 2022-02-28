@@ -139,7 +139,7 @@ NVRAM:
 
 import TINURecovery
 
-if let args = NVRAM.getString(name: "boot-args") {
+if let args = NVRAM.getString(forKey: "boot-args") {
     print("Current boot args: \(args)")
 }
 
@@ -159,9 +159,8 @@ Also having it as it's own library allows for code to be updated separately and 
 
 # Libraries used
 
- - [ITzTravelInTime/SwiftCPUDetect](https://github.com/ITzTravelInTime/SwiftCPUDetect)
- - [ITzTravelInTime/Command](https://github.com/ITzTravelInTime/Command)
  - [ITzTravelInTime/SwiftLoggedPrint](https://github.com/ITzTravelInTime/SwiftLoggedPrint)
+ - [ITzTravelInTime/TINUIORegistry](https://github.com/ITzTravelInTime/TINUIORegistry)
 
 # Credits
 
