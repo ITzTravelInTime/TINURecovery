@@ -187,6 +187,7 @@ public extension SIP.SIPStatus{
     ///Indicates if SIP has enabled all the valus that csrutil will change when it sets the SIP enabled, or disabled or uses a mixed configuration
     var resultsEnabled: Bool!{
         let ref = (SIP.SIPBits.CSR_DISABLE_FLAGS & (~SIP.SIPBits.CSR_ALLOW_APPLE_INTERNAL.rawValue) )
+        
         switch (self & ref) {
         case ref:
             return false
@@ -201,12 +202,7 @@ public extension SIP.SIPStatus{
     var resultsFullyDisabled: Bool{
         let ref = SIP.SIPBits.CSR_VALID_FLAGS & (~SIP.SIPBits.CSR_ALLOW_APPLE_INTERNAL.rawValue)
         
-        switch self & ref {
-        case ref:
-            return true
-        default:
-            return false
-        }
+        return (self & ref == ref)
         
     }
     

@@ -12,13 +12,16 @@
 import Foundation
 
 #if os(macOS)
-import IOKit
+
 
 import TINUIORegistry
 
+///Object used for convenient access to the NVRAM
 public let NVRAM = TINUIORegistry.IONVRAM
 
 /*
+ import IOKit
+ 
 ///Class used for NVRAM management
 public class NVRAM {
     
