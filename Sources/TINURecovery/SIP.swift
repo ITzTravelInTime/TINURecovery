@@ -136,8 +136,18 @@ open class SIP: SimulatableDetectable{
                     return
                 }
                  */
+                /*
+                guard let num = NVRAM.getData(forKey: "csr-active-config") else{
+                    Printer.print(" [SIP] Can't get SIP staus, due to a problem while converting the nvram output to a valid integer")
+                    return
+                }
                 
-                guard let num: SIPStatus = NVRAM.getInteger(forKey: "csr-active-config") else{
+                ret = num.withUnsafeBytes({(rawPtr: UnsafeRawBufferPointer) in
+                    return rawPtr.load(as: SIPStatus.self)
+                })*/
+                
+                
+                guard let num: SIPStatus = NVRAM.getIntegerData(forKey: "csr-active-config") else{
                     Printer.print(" [SIP] Can't get SIP staus, due to a problem while converting the nvram output to a valid integer")
                     return
                 }
