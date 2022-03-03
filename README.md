@@ -1,10 +1,10 @@
 # TINURecovery
 
-Library with the Recovery Mode, SIP, Sandbox, User detection, nvram and network detection functions used by [TINU](https://github.com/ITzTravelInTime/TINU)
+Library with the Recovery Mode, SIP, Sandbox, User detection, NVRAM and network detection functions used by [TINU](https://github.com/ITzTravelInTime/TINU)
 
 # Features and usage
 
-SimulatableDetectable:
+**SimulatableDetectable**:
 
 - A set of protocols for objects that needs to have simulated debug states. 
     
@@ -44,7 +44,7 @@ print("Foo testing is complete")
 
 ```
 
-SimpleReachability:
+**SimpleReachability**:
 
 - Provvides a simple way to check if network conenction is available.
 
@@ -76,7 +76,7 @@ print("Is this program running on a macOS Recovery/Installer OS? \((Recovery.sta
 
 ```
 
-SIP:
+**SIP**:
 
 **WARNING**: Requires sandboxing to be disabled.
 
@@ -98,7 +98,7 @@ print("Does SIP use a custom configuration? \(SIP.status.usesCustomConfiguration
 
 ```
 
-Sandbox: 
+**Sandbox**: 
 
 - [Available only on macOS] Used to detect if the current app is running with the app Sandbox enabled or not.
 
@@ -127,7 +127,7 @@ print("What's the user name? \(CurrentUser.name)")
 
 ```
 
-NVRAM:
+**NVRAM**:
 
 **WARNING**: Requires sandboxing to be disabled.
 
