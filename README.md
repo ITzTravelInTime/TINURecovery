@@ -60,7 +60,7 @@ print("Is the computer connected to the network? \(SimpleReachability.status ? "
 
 - 
 
-Recovery:
+**Recovery**:
 
 **WARNING**: Requires sandboxing to be disabled.
 
@@ -112,7 +112,7 @@ print("Is this app sandboxed? \(Sandbox.isEnabled ? "Yes" : "No")")
 
 ```
 
-User:
+**User**:
 
 - [Available only on macOS] Just a more convenenint way of getting the current user's logon name and if it's the Root user.
 
