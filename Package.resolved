@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "SwiftPackagesBase",
+        "repositoryURL": "https://github.com/ITzTravelInTime/SwiftPackagesBase",
+        "state": {
+          "branch": null,
+          "revision": "a913e57789dcb73bc24e367217e5b87eb849e5c1",
+          "version": "0.0.4"
+        }
+      },
+      {
         "package": "TINUIORegistry",
         "repositoryURL": "https://github.com/ITzTravelInTime/TINUIORegistry",
         "state": {

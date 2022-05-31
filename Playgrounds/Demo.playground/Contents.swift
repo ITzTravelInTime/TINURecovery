@@ -5,37 +5,6 @@ import TINURecovery
 
 TINURecovery.Printer.enabled = false
 
-//This class is an example of a SimulatableDetectable type
-
-class Foo: SimulatableDetectable{
-
-    ///if this property is nil the `actualStatus` property will be returned by the `status` propert, otherwise that will return the value of this property
-    static var simulatedStatus: Bool? = nil
-    
-    ///Returns the actual status
-    static func calculateStatus() -> Bool {
-        return false
-    }
-    
-    ///Initializer for compliance with the protocol
-    public required init(){ }
-    
-}
-
-print("Testing Foo status: ")
-
-print("Foo status: \(Foo.status)") //returns false
-print("Foo actual status: \(Foo.actualStatus)") //returns false
-
-
-print("Simulating a new status")
-Foo.simulatedStatus = true
-
-print("Foo status: \(Foo.status)") //returns true
-print("Foo actual status: \(Foo.actualStatus)") //returns false
-
-print("Foo testing is complete")
-
 #if os(macOS)
 //This is an example usage for Recovery
 

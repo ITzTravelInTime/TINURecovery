@@ -1,6 +1,6 @@
 /*
  TINURecovery: Library with the Recovery Mode, SIP, Sandbox, User detection, nvram and network detection functions used by TINU.
- Copyright (C) 2021 Pietro Caruso
+ Copyright (C) 2021-2022 Pietro Caruso
 
  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
 
@@ -10,6 +10,7 @@
  */
 
 import Foundation
+import SwiftPackagesBase
 
 #if os(macOS)
 
@@ -17,32 +18,22 @@ import Foundation
 public final class CurrentUser{
     ///Detects the logon name of the current user.
     public static var name: String{
-        //Uses a static value to avoid repeting the detection code for each call of the variable
-        struct MEM{
-            static var state: String! = nil
-        }
-        
-        if MEM.state == nil{
-            MEM.state = NSUserName()
-            Printer.print("Current user is: " + MEM.state!)
-        }
-        
-        return MEM.state
+        return NSUserName()
     }
     
     ///Detects if the current user is Root
     public static var isRoot: Bool{
         //Uses a static value to avoid repeting the detection code for each call of the variable
         struct MEM{
-            static var state: Bool! = nil
+            static var state: Bool? = nil
         }
         
         if MEM.state == nil{
             MEM.state = name == "root"
-            Printer.print("Is the current user Root?: \(boolToPrettyStr(MEM.state!))")
+            Printer.print("Is the current user Root?: \(MEM.state?.stringValue() ?? "unkown (defaults to false)")")
         }
         
-        return MEM.state
+        return MEM.state ?? false
     }
 }
 

@@ -1,6 +1,6 @@
 /*
  TINURecovery: Library with the Recovery Mode, SIP, Sandbox, User detection, nvram and network detection functions used by TINU.
- Copyright (C) 2021 Pietro Caruso
+ Copyright (C) 2021-2022 Pietro Caruso
 
  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
 
@@ -10,6 +10,7 @@
  */
 
 import Foundation
+import SwiftPackagesBase
 
 #if os(macOS)
 /**This class manages the macOS Recovery/Installer OS detection functions.
@@ -49,7 +50,7 @@ open class Recovery: SimulatableDetectableOneTime{
             _state = !FileManager.default.fileExists(atPath: "/usr/bin/sudo") && CurrentUser.isRoot
         }
         
-        Printer.print("Is this app/program running inside a macOS Recovery/Installer OS? \(boolToPrettyStr(_state))")
+        Printer.print("Is this app/program running inside a macOS Recovery/Installer OS? \(_state.stringValue() ?? "no value!")")
         
         return _state
     }

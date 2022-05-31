@@ -1,6 +1,6 @@
 /*
  TINURecovery: Library with the Recovery Mode, SIP, Sandbox, User detection, nvram and network detection functions used by TINU.
- Copyright (C) 2021 Pietro Caruso
+ Copyright (C) 2021-2022 Pietro Caruso
 
  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
 
@@ -10,6 +10,7 @@
  */
 
 import Foundation
+import SwiftPackagesBase
 //import Command
 
 //import SwiftCPUDetect
@@ -160,13 +161,13 @@ open class SIP: SimulatableDetectable{
         }
         
         if let stat = ret.resultsEnabled {
-            Printer.print(" [SIP] Is SIP Enabled? \(boolToPrettyStr(stat)).")
+            Printer.print(" [SIP] Is SIP Enabled? \(stat.stringValue() ?? "No idea!").")
         }else{
             Printer.print(" [SIP] Is SIP Enabled? We don't know because the SIP status is either unsupported or unkown.")
         }
         
         Printer.print(" [SIP] Obtained SIP configuration bits: \(ret.detailedConfiguration )")
-        Printer.print(" [SIP] Does SIP use a custom configuration? \(boolToPrettyStr(ret.usesCustomConfiguration)).")
+        Printer.print(" [SIP] Does SIP use a custom configuration? \(ret.usesCustomConfiguration.stringValue() ?? "No idea!").")
         
         return ret
     }

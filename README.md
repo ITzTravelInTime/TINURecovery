@@ -2,47 +2,7 @@
 
 Library with the Recovery Mode, SIP, Sandbox, User detection, NVRAM and network detection functions used by [TINU](https://github.com/ITzTravelInTime/TINU)
 
-# Features and usage
-
-**SimulatableDetectable**:
-
-- A set of protocols for objects that needs to have simulated debug states. 
-    
-    Example usage:
-
-```swift
-
-import TINURecovery
-
-class Foo: SimulatableDetectable{
-
-    ///if this property is nil the `actualStatus` property will be returned by the `status` propert, otherwise that will return the value of this property
-    static var simulatedStatus: Bool? = nil
-    
-    ///Returns the actual status
-    static func calculateStatus() -> Bool{
-        return false
-    }
-    
-    ///Initializer for compliance with the protocol
-    public required init(){  }
-    
-}
-
-print("Testing Foo status: ")
-
-print("Foo status: \(Foo.status)") //returns false
-print("Foo actual status: \(Foo.actualStatus)") //returns false
-
-print("Simulating a new status")
-Foo.simulatedStatus = true
-
-print("Foo status: \(Foo.status)") //returns true
-print("Foo actual status: \(Foo.actualStatus)") //returns false
-
-print("Foo testing is complete")
-
-```
+## Features and usage
 
 **SimpleReachability**:
 
@@ -151,18 +111,19 @@ This library should be used by swift apps/programs that requires to obtain parti
 
 This code is intended for macOS only, it might also work on other Apple's OSes for the non-macOS-specific features but it's untested.
 
-# About the project
+## About the project
 
 This code was created as part of my TINU project (https://github.com/ITzTravelInTime/TINU) and has been separated and made into it's own library to make the main project's source less complex and more focused on it's aim. 
 
 Also having it as it's own library allows for code to be updated separately and so various versions of the main TINU app will be able to be compiled all with the latest version of this library.
 
-# Libraries used
+## Libraries used
 
  - [ITzTravelInTime/SwiftLoggedPrint](https://github.com/ITzTravelInTime/SwiftLoggedPrint)
  - [ITzTravelInTime/TINUIORegistry](https://github.com/ITzTravelInTime/TINUIORegistry)
+  - [ITzTravelInTime/SwiftPackagesBase](https://github.com/ITzTravelInTime/SwiftPackagesBase)
 
-# Credits
+## Credits
 
  - [ITzTravelInTime (Pietro Caruso)](https://github.com/ITzTravelInTime) - Project creator and main developer
  - [khronokernel](https://github.com/khronokernel) - Help with SIP detection, bit values and their descriptions.
@@ -174,13 +135,13 @@ Also having it as it's own library allows for code to be updated separately and 
   - NVRAM Code: https://gist.github.com/hansen-m/3e9632ce6fd5b9e3a768321dc5bb4bdc
  
 
-# Contacts
+## Contacts
 
  - ITzTravelInTime (Pietro Caruso): piecaruso97@gmail.com
 
-# Copyright
+## Legal info
 TINURecovery: Library with the Recovery Mode, SIP, Sandbox, User detection, nvram and network detection functions used by TINU.
-Copyright (C) 2021 Pietro Caruso
+Copyright (C) 2021-2022 Pietro Caruso
 
 This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
 
