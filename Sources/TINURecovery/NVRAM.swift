@@ -13,7 +13,6 @@ import Foundation
 
 #if os(macOS)
 
-
 import TINUIORegistry
 
 ///Object used for convenient access to the NVRAM
