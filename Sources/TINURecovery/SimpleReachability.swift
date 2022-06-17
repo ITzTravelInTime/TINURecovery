@@ -10,6 +10,8 @@
  */
 import Foundation
 
+#if !(os(watchOS) || os(Linux) || os(Windows))
+
 import SystemConfiguration
 import SwiftLoggedPrint
 import SwiftPackagesBase
@@ -57,3 +59,4 @@ open class SimpleReachability: SimulatableDetectableTemporized {
         return ret
     }
 }
+#endif
